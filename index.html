@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Penguins Rule | penguinsrule.world</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@900&family=Cinzel:wght@400;700&family=Crimson+Text:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+–ice: #a8d8f0;
+–gold: #c9a84c;
+–gold-bright: #f0cc6a;
+–dark: #050a10;
+–darker: #020508;
+–shadow-blue: #0a1a2e;
+–white: #f0f4f8;
+}
+
+html, body {
+height: 100%;
+background: var(–darker);
+color: var(–white);
+font-family: ‘Crimson Text’, serif;
+overflow-x: hidden;
+}
+
+/* ── Stars ── */
+.stars {
+position: fixed; inset: 0; z-index: 0;
+background:
+radial-gradient(1px 1px at 10% 15%, #fff 0%, transparent 100%),
+radial-gradient(1px 1px at 25% 40%, #bde 0%, transparent 100%),
+radial-gradient(1.5px 1.5px at 40% 8%, #fff 0%, transparent 100%),
+radial-gradient(1px 1px at 60% 30%, #bde 0%, transparent 100%),
+radial-gradient(1px 1px at 75% 12%, #fff 0%, transparent 100%),
+radial-gradient(1.5px 1.5px at 88% 22%, #bde 0%, transparent 100%),
+radial-gradient(1px 1px at 15% 70%, #fff 0%, transparent 100%),
+radial-gradient(1px 1px at 55% 80%, #bde 0%, transparent 100%),
+radial-gradient(1px 1px at 90% 65%, #fff 0%, transparent 100%),
+radial-gradient(1px 1px at 33% 55%, #bde 0%, transparent 100%),
+radial-gradient(1.5px 1.5px at 70% 85%, #fff 0%, transparent 100%),
+radial-gradient(1px 1px at 5% 45%, #bde 0%, transparent 100%),
+radial-gradient(1px 1px at 48% 95%, #fff 0%, transparent 100%),
+radial-gradient(1px 1px at 82% 48%, #bde 0%, transparent 100%),
+radial-gradient(1.5px 1.5px at 20% 90%, #fff 0%, transparent 100%);
+pointer-events: none;
+}
+
+/* ── Ice aurora background ── */
+.aurora {
+position: fixed; inset: 0; z-index: 0;
+background: radial-gradient(ellipse 80% 40% at 50% 100%, #0d2d4a 0%, transparent 70%),
+radial-gradient(ellipse 60% 30% at 20% 80%, #0a3020 0%, transparent 60%),
+radial-gradient(ellipse 50% 20% at 80% 90%, #1a1a3a 0%, transparent 60%);
+pointer-events: none;
+}
+
+/* ── Layout ── */
+.page {
+position: relative; z-index: 1;
+min-height: 100vh;
+display: flex; flex-direction: column; align-items: center; justify-content: center;
+padding: 40px 20px;
+gap: 0;
+}
+
+/* ── Top decree ── */
+.decree {
+font-family: ‘Cinzel’, serif;
+font-size: clamp(0.6rem, 1.2vw, 0.85rem);
+letter-spacing: 0.5em;
+text-transform: uppercase;
+color: var(–ice);
+opacity: 0.7;
+animation: fadeIn 1s ease 0.2s both;
+}
+
+/* ── Divider ── */
+.divider {
+width: 200px; height: 1px;
+background: linear-gradient(90deg, transparent, var(–gold), transparent);
+margin: 18px auto;
+animation: expandWidth 1.2s ease 0.5s both;
+transform-origin: center;
+}
+
+@keyframes expandWidth {
+from { width: 0; opacity: 0; }
+to { width: 200px; opacity: 1; }
+}
+
+/* ── Main Penguin ── */
+.penguin-wrap {
+position: relative;
+margin: 10px 0;
+animation: dropIn 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s both;
+}
+
+@keyframes dropIn {
+from { transform: translateY(-60px) scale(0.7); opacity: 0; }
+to { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.penguin-svg {
+width: clamp(180px, 30vw, 260px);
+filter: drop-shadow(0 0 30px rgba(168, 216, 240, 0.3)) drop-shadow(0 0 60px rgba(168, 216, 240, 0.1));
+}
+
+/* ── Shadow pulse on penguin ── */
+.penguin-wrap::after {
+content: ‘’;
+position: absolute;
+bottom: -15px; left: 50%;
+transform: translateX(-50%);
+width: 80%; height: 20px;
+background: radial-gradient(ellipse, rgba(168,216,240,0.2), transparent 70%);
+animation: pulse 3s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{opacity:0.4; transform:translateX(-50%) scaleX(0.8);} 50%{opacity:1; transform:translateX(-50%) scaleX(1.1);} }
+
+/* ── Title ── */
+.main-title {
+font-family: ‘Cinzel Decorative’, serif;
+font-size: clamp(2.4rem, 8vw, 5.5rem);
+font-weight: 900;
+line-height: 1;
+text-align: center;
+background: linear-gradient(160deg, var(–gold-bright) 0%, var(–gold) 40%, #8a6820 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+text-shadow: none;
+margin-top: 24px;
+animation: fadeIn 1s ease 0.8s both;
+position: relative;
+}
+
+.main-title::after {
+content: ‘PENGUINS’;
+position: absolute; inset: 0;
+background: linear-gradient(160deg, #fff8e0 0%, transparent 50%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+opacity: 0.15;
+}
+
+.subtitle-rule {
+font-family: ‘Cinzel Decorative’, serif;
+font-size: clamp(1.4rem, 4vw, 2.8rem);
+font-weight: 900;
+color: var(–ice);
+letter-spacing: 0.15em;
+margin-top: 4px;
+animation: fadeIn 1s ease 1s both;
+text-shadow: 0 0 20px rgba(168,216,240,0.5), 0 0 40px rgba(168,216,240,0.2);
+}
+
+/* ── Haiku / proclamation ── */
+.haiku {
+margin-top: 32px;
+text-align: center;
+font-style: italic;
+font-size: clamp(1rem, 2.5vw, 1.3rem);
+line-height: 2;
+color: rgba(240,244,248,0.75);
+animation: fadeIn 1.2s ease 1.3s both;
+letter-spacing: 0.02em;
+}
+
+.haiku em {
+color: var(–gold-bright);
+font-style: normal;
+}
+
+/* ── Ninja star decoration ── */
+.stars-row {
+display: flex; gap: 18px; align-items: center;
+margin: 28px 0;
+animation: fadeIn 1s ease 1.5s both;
+}
+
+.shuriken {
+width: 22px; height: 22px;
+fill: var(–gold);
+opacity: 0.8;
+animation: spin 8s linear infinite;
+}
+.shuriken:nth-child(2) { animation-duration: 6s; animation-direction: reverse; }
+.shuriken:nth-child(3) { animation-duration: 10s; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Stats grid ── */
+.stats {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1px;
+background: rgba(168,216,240,0.1);
+border: 1px solid rgba(168,216,240,0.15);
+border-radius: 2px;
+overflow: hidden;
+margin-top: 8px;
+animation: fadeIn 1s ease 1.7s both;
+max-width: 520px; width: 100%;
+}
+
+.stat {
+background: rgba(5,10,16,0.8);
+padding: 20px 12px;
+text-align: center;
+backdrop-filter: blur(10px);
+}
+
+.stat-number {
+font-family: ‘Cinzel’, serif;
+font-size: clamp(1.6rem, 4vw, 2.4rem);
+color: var(–gold-bright);
+font-weight: 700;
+display: block;
+line-height: 1;
+}
+
+.stat-label {
+font-size: 0.68rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–ice);
+opacity: 0.6;
+margin-top: 6px;
+display: block;
+}
+
+/* ── Bottom motto ── */
+.motto {
+margin-top: 36px;
+font-family: ‘Cinzel’, serif;
+font-size: clamp(0.65rem, 1.5vw, 0.8rem);
+letter-spacing: 0.4em;
+text-transform: uppercase;
+color: rgba(168,216,240,0.4);
+text-align: center;
+animation: fadeIn 1s ease 2s both;
+}
+
+/* ── Ice crack overlay ── */
+.cracks {
+position: fixed; inset: 0; z-index: 0;
+pointer-events: none;
+opacity: 0.03;
+background-image: url(“data:image/svg+xml,%3Csvg xmlns=‘http://www.w3.org/2000/svg’ width=‘400’ height=‘400’%3E%3Cpath d=‘M200,200 L150,80 L170,140 L100,50 M200,200 L280,90 L240,160 L320,60 M200,200 L350,250 L280,220 L380,300 M200,200 L100,300 L160,260 L60,350 M200,200 L50,200 L120,180 L30,150’ stroke=‘white’ stroke-width=‘1’ fill=‘none’/%3E%3C/svg%3E”);
+background-size: 400px;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Glint animation on title ── */
+@keyframes glint {
+0%, 90%, 100% { background-position: -200% center; }
+45% { background-position: 200% center; }
+}
+</style>
+
+</head>
+<body>
+
+<div class="stars"></div>
+<div class="aurora"></div>
+<div class="cracks"></div>
+
+<div class="page">
+
+  <div class="decree">Ancient Order of the Antarctic Brotherhood</div>
+
+  <div class="divider"></div>
+
+  <div class="penguin-wrap">
+    <!-- Ninja Penguin SVG -->
+    <svg class="penguin-svg" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+      <!-- Ninja mask / headband -->
+      <ellipse cx="100" cy="90" rx="42" ry="45" fill="#0a0a0a"/>
+      <!-- White face patch -->
+      <ellipse cx="100" cy="98" rx="28" ry="30" fill="#e8e8e8"/>
+      <!-- Ninja mask over top half of face -->
+      <rect x="72" y="72" width="56" height="28" rx="6" fill="#0a0a0a"/>
+      <!-- Eye slits in mask -->
+      <ellipse cx="88" cy="83" rx="7" ry="4" fill="#1a1a1a"/>
+      <ellipse cx="112" cy="83" rx="7" ry="4" fill="#1a1a1a"/>
+      <!-- Eye glints -->
+      <ellipse cx="88" cy="83" rx="5" ry="2.5" fill="#ffffff" opacity="0.08"/>
+      <ellipse cx="112" cy="83" rx="5" ry="2.5" fill="#ffffff" opacity="0.08"/>
+      <!-- Pupil glow -->
+      <circle cx="88" cy="83" r="2" fill="#a8d8f0" opacity="0.9"/>
+      <circle cx="112" cy="83" r="2" fill="#a8d8f0" opacity="0.9"/>
+      <!-- Beak -->
+      <ellipse cx="100" cy="106" rx="9" ry="6" fill="#c9a84c"/>
+      <!-- Ninja headband knot at back -->
+      <rect x="58" y="75" width="8" height="14" rx="3" fill="#1a1a1a"/>
+      <!-- Headband ties -->
+      <path d="M58,82 Q40,78 38,90 Q36,98 42,102" stroke="#1a1a1a" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M58,85 Q42,95 44,108 Q46,118 50,120" stroke="#1a1a1a" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+```
+  <!-- Body -->
+  <ellipse cx="100" cy="175" rx="55" ry="70" fill="#0d0d0d"/>
+  <!-- White belly -->
+  <ellipse cx="100" cy="180" rx="34" ry="52" fill="#e8e8e8"/>
+  <!-- Ninja sash / belt -->
+  <rect x="66" y="170" width="68" height="10" rx="2" fill="#1a3a1a"/>
+  <rect x="95" y="166" width="10" height="18" rx="2" fill="#1a3a1a"/>
+
+  <!-- Left arm / wing holding shuriken -->
+  <path d="M45,150 Q20,140 18,160 Q16,180 40,185" stroke="#0d0d0d" stroke-width="16" fill="none" stroke-linecap="round"/>
+  <!-- Shuriken in left hand -->
+  <g transform="translate(12, 175) rotate(22)">
+    <polygon points="0,-12 3,-3 12,0 3,3 0,12 -3,3 -12,0 -3,-3" fill="#c9a84c" opacity="0.95"/>
+    <circle cx="0" cy="0" r="3" fill="#050a10"/>
+  </g>
+
+  <!-- Right arm / wing in ready pose -->
+  <path d="M155,145 Q182,135 184,158 Q186,175 162,182" stroke="#0d0d0d" stroke-width="16" fill="none" stroke-linecap="round"/>
+
+  <!-- Feet -->
+  <ellipse cx="82" cy="242" rx="18" ry="7" fill="#c9a84c"/>
+  <ellipse cx="118" cy="242" rx="18" ry="7" fill="#c9a84c"/>
+
+  <!-- Shadow beneath -->
+  <ellipse cx="100" cy="252" rx="40" ry="6" fill="#020508" opacity="0.5"/>
+
+  <!-- Ice glow around penguin -->
+  <ellipse cx="100" cy="175" rx="65" ry="80" fill="none" stroke="#a8d8f0" stroke-width="1" opacity="0.12"/>
+</svg>
+```
+
+  </div>
+
+  <div class="main-title">PENGUINS</div>
+  <div class="subtitle-rule">RULE THE WORLD</div>
+
+  <div class="haiku">
+    Silent on the ice — <em>unseen, unstoppable</em> —<br>
+    the duck never knew.
+  </div>
+
+  <div class="stars-row">
+    <!-- Shuriken SVG icons -->
+    <svg class="shuriken" viewBox="0 0 24 24"><polygon points="12,2 14,10 22,12 14,14 12,22 10,14 2,12 10,10"/></svg>
+    <svg class="shuriken" viewBox="0 0 24 24"><polygon points="12,2 14,10 22,12 14,14 12,22 10,14 2,12 10,10"/></svg>
+    <svg class="shuriken" viewBox="0 0 24 24"><polygon points="12,2 14,10 22,12 14,14 12,22 10,14 2,12 10,10"/></svg>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-number">∞</span>
+      <span class="stat-label">Stealth Level</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">0</span>
+      <span class="stat-label">Ducks Survived</span>
+    </div>
+    <div class="stat">
+      <span class="stat-number">VII</span>
+      <span class="stat-label">Continents Owned</span>
+    </div>
+  </div>
+
+  <div class="divider" style="margin-top: 36px;"></div>
+
+  <div class="motto">Established Since The Ice Age &nbsp;·&nbsp; We Were Always Here</div>
+
+</div>
+
+</body>
+</html>
